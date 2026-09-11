@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ceibo Staff — Backoffice del grupo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue: #314FCC;
+    --navy: #152058;
+    --deep-navy: #10113E;
+    --staff-green: #60B397;
+    --staff-gray: #AAAAAA;
+    --paper: #FFFFFF;
+    --paper-tint: #F2FAF7;
+    --ink: #10113E;
+    --ink-soft: #545B84;
+    --line: #DCEFE8;
+    --font-display: "REM", sans-serif;
+    --font-body: "REM", sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; padding:0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  section{ padding: 80px 8vw; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+    padding: 18px 8vw;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap;
+  }
+  .header-logo-group{ display:flex; align-items:center; gap:16px; }
+  .back-link{
+    font-size:13.5px; font-weight:600; color: var(--staff-green);
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .hero{
+    position:relative; overflow:hidden;
+    background: radial-gradient(120% 140% at 15% 20%, #1F4A3C 0%, #123A2D 55%, #0B2820 100%);
+    color:#fff;
+    padding: 110px 8vw 100px;
+    display:flex; align-items:center; gap:48px; flex-wrap:wrap;
+  }
+  .hero-icon-img{
+    width:110px; height:auto; flex-shrink:0;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,.25));
+  }
+  .hero-text{ max-width:640px; }
+  .hero .eyebrow{ font-size:13px; font-weight:600; letter-spacing:.04em; color:#A9E8D2; margin-bottom:14px; }
+  .hero h1{ font-size: clamp(28px,4vw,42px); font-weight:700; line-height:1.15; margin-bottom:18px; }
+  .hero p{ font-size:15.5px; color:#D8F0E8; max-width:52ch; }
+
+  .cap-section-head{ max-width:60ch; margin-bottom:44px; }
+  .cap-section-head .eyebrow{ color: var(--staff-green); font-size:13px; font-weight:600; margin-bottom:10px; }
+  .cap-section-head h2{ font-size: clamp(24px,3vw,32px); font-weight:700; margin-bottom:12px; }
+  .cap-section-head p{ color: var(--ink-soft); font-size:15px; }
+
+  .offer-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:22px;
+  }
+  .offer-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:30px 26px;
+    background: var(--paper-tint);
+  }
+  .offer-card .num{
+    font-family: var(--font-display); font-weight:800; font-size:14px;
+    color:#fff; background: var(--staff-green);
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .offer-card h3{ font-size:18px; font-weight:700; margin-bottom:12px; color:#2E7D5D; }
+  .offer-card p{ font-size:14px; color: var(--ink-soft); line-height:1.6; }
+  .offer-card ul{ margin:14px 0 0; padding-left:18px; font-size:13.5px; color: var(--ink-soft); line-height:1.8; }
+
+  .cta-section{
+    background: var(--deep-navy);
+    color:#fff;
+    text-align:center;
+  }
+  .cta-section h2{ font-size: clamp(22px,3vw,28px); font-weight:700; margin-bottom:16px; }
+  .cta-section p{ color:#C7CEEF; font-size:15px; margin-bottom:26px; max-width:50ch; margin-left:auto; margin-right:auto; }
+  .btn-primary{
+    background: var(--staff-green); color:#fff; font-weight:600; font-size:14.5px;
+    padding:13px 26px; border-radius:8px; display:inline-block;
+  }
+
+  .staff-team-grid{
+    display:flex; gap:32px; flex-wrap:wrap;
+  }
+  .staff-team-card{
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
+    width:140px;
+  }
+  .staff-avatar{
+    width:72px; height:72px; border-radius:50%;
+    background: linear-gradient(160deg, #fff, var(--line));
+    display:flex; align-items:center; justify-content:center;
+    color: var(--staff-green); font-weight:800; font-size:18px;
+    font-family: var(--font-display);
+  }
+  .staff-name{ font-weight:600; font-size:14.5px; }
+  .staff-role{ font-size:12.5px; color: var(--ink-soft); }
+
+  footer{
+    background: var(--deep-navy);
+    color:#8891C2;
+    padding: 30px 8vw;
+    text-align:center;
+    font-size:12.5px;
+  }
+
+  @media (max-width:760px){
+    header, section, footer{ padding-left:5vw; padding-right:5vw; }
+    .hero{ flex-direction:column; text-align:center; }
+    .offer-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo-group">
+    <svg width="219" height="74" viewBox="0 0 219 74" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto;">
+      <g clip-path="url(#clip0_header)">
+        <path d="M105.983 11.0323C104.701 10.7517 103.364 10.6148 102.008 10.6148C100.129 10.6148 98.3312 10.9159 96.6761 11.5113C95.0277 12.1067 93.5625 12.9895 92.3279 14.1529C91.0934 15.3095 90.1098 16.7466 89.4111 18.4233C88.7124 20.0999 88.3529 22.0709 88.3529 24.2677C88.3529 27.2583 88.9431 29.7904 90.103 31.8092C91.263 33.8212 92.8638 35.361 94.8581 36.3807C96.8592 37.4004 99.1723 37.9205 101.73 37.9205C103.059 37.9205 104.436 37.77 105.827 37.4825C107.211 37.1883 108.56 36.7571 109.849 36.2028L110.853 35.7785L109.999 32.3362L108.499 32.74C107.319 33.0274 106.186 33.2601 105.121 33.438C104.056 33.6228 103.012 33.7117 102.035 33.7117C100.217 33.7117 98.6161 33.3627 97.273 32.6784C95.9163 31.9872 94.8581 30.9264 94.1255 29.5235C93.3929 28.1274 93.0266 26.3481 93.0266 24.2266C93.0266 22.1051 93.4268 20.3668 94.2069 18.9845C94.9938 17.5952 96.0995 16.5413 97.4901 15.8501C98.8739 15.1658 100.482 14.8236 102.272 14.8236C103.303 14.8236 104.321 14.9194 105.304 15.0973C106.268 15.2753 107.339 15.4737 108.486 15.679L109.307 15.8296L110.168 12.3325L109.625 12.0999C108.499 11.6687 107.272 11.3128 105.983 11.0323Z" fill="#162159"/>
+        <path d="M133.835 25.9648V21.9819H120.255V14.9741H135.368V10.998H115.703V37.6057H135.633V33.6296H120.255V25.9648H133.835Z" fill="#162159"/>
+        <path d="M145.374 10.998H140.815V37.6125H145.374V10.998Z" fill="#162159"/>
+        <path d="M169.068 11.9013C167.894 11.2991 166.388 10.998 164.591 10.998H152.204V37.6125H165.011C166.884 37.6125 168.478 37.284 169.76 36.6339C171.028 35.9906 172.012 35.0667 172.67 33.9033C173.335 32.7331 173.674 31.3438 173.674 29.763C173.674 28.3532 173.28 27.1282 172.493 26.1154C171.707 25.1025 170.716 24.4113 169.543 24.0691L169.373 24.0212V23.6585L169.509 23.5969C170.723 23.0358 171.551 22.2351 171.958 21.2291C172.378 20.1889 172.595 19.0802 172.595 17.9305C172.595 16.5892 172.297 15.3847 171.707 14.3513C171.116 13.3248 170.228 12.5036 169.061 11.9082L169.068 11.9013ZM156.763 14.9741H164.279C165.635 14.9741 166.653 15.2752 167.291 15.8706C167.942 16.4728 168.267 17.3419 168.267 18.4643C168.267 19.5866 167.955 20.531 167.331 21.1264C166.714 21.7218 165.791 22.0229 164.584 22.0229H156.756V14.9741H156.763ZM167.928 32.6578C167.223 33.3011 166.151 33.6296 164.74 33.6296H156.763V26.0059H164.971C166.226 26.0059 167.216 26.3138 167.921 26.9092C168.64 27.5183 169 28.4422 169 29.6398C169 30.9948 168.64 32.0076 167.928 32.6578Z" fill="#162159"/>
+        <path d="M198.331 12.3393C196.33 11.1896 193.929 10.6079 191.202 10.6079C188.475 10.6079 186.216 11.1828 184.201 12.3188C182.194 13.4548 180.6 15.0631 179.48 17.1024C178.354 19.1486 177.784 21.5576 177.784 24.2608C177.784 26.964 178.341 29.4139 179.446 31.4602C180.545 33.4995 182.112 35.1146 184.113 36.2643C186.114 37.414 188.502 37.9957 191.209 37.9957C193.915 37.9957 196.235 37.414 198.243 36.2643C200.251 35.1146 201.845 33.4995 202.964 31.4602C204.09 29.4139 204.66 27.005 204.66 24.3018C204.66 21.5986 204.104 19.1829 202.998 17.1435C201.899 15.1041 200.332 13.489 198.331 12.3393ZM198.887 29.4413C198.155 30.8716 197.117 31.9666 195.801 32.692C194.492 33.4174 192.945 33.787 191.202 33.787C189.459 33.787 187.912 33.4174 186.603 32.692C185.287 31.9666 184.256 30.8785 183.537 29.4619C182.818 28.0589 182.458 26.3207 182.458 24.3087C182.458 22.2967 182.831 20.5242 183.557 19.1281C184.29 17.7252 185.327 16.6439 186.643 15.9185C187.953 15.1931 189.486 14.8235 191.202 14.8235C192.918 14.8235 194.532 15.1931 195.842 15.9185C197.158 16.6508 198.189 17.7252 198.908 19.1281C199.627 20.5242 199.986 22.2488 199.986 24.2676C199.986 26.2865 199.613 28.0247 198.887 29.4413Z" fill="#162159"/>
+        <path d="M102.51 61.7565C104.111 60.9694 105.359 59.8129 106.227 58.321C107.095 56.8291 107.536 55.0156 107.536 52.9351C107.536 50.8547 107.095 48.8974 106.227 47.4124C105.359 45.9342 104.131 44.7913 102.571 44.0248C100.997 43.2515 99.1317 42.8615 97.0221 42.8615H89.6554V62.9541H96.7575C98.9621 62.9541 100.895 62.5503 102.51 61.7565ZM92.9996 45.7631H96.9C98.4805 45.7631 99.8168 46.0232 100.875 46.5364C101.947 47.0565 102.761 47.8641 103.297 48.9317C103.826 49.9856 104.09 51.3337 104.09 52.9283C104.09 54.427 103.812 55.7205 103.263 56.7675C102.707 57.8214 101.886 58.6426 100.821 59.2038C99.7626 59.7581 98.4466 60.0387 96.9 60.0387H92.9996V45.7631Z" fill="#3D87C4"/>
+        <path d="M115.222 42.8546H111.871V62.9472H115.222V42.8546Z" fill="#3D87C4"/>
+        <path d="M133.401 42.8273C132.485 42.6562 131.57 42.5672 130.681 42.5672C129.141 42.5672 127.676 42.793 126.326 43.231C124.983 43.669 123.789 44.3328 122.778 45.202C121.775 46.0642 120.974 47.1524 120.411 48.4253C119.848 49.6982 119.556 51.2037 119.556 52.8804C119.556 55.0224 120.018 56.8907 120.92 58.4305C121.822 59.9703 123.145 61.1679 124.841 61.996C126.55 62.8309 128.639 63.2484 131.061 63.2484C131.936 63.2484 132.818 63.1662 133.7 63.002C134.575 62.8378 135.436 62.6119 136.257 62.3313C137.023 62.0713 137.736 61.777 138.367 61.4554V51.7854H129.487V54.6939H135.022V59.8129L134.846 59.854C134.215 60.0114 133.584 60.1346 132.953 60.2098C132.329 60.292 131.719 60.3262 131.149 60.3262C129.453 60.3262 127.981 60.0456 126.774 59.4981C125.553 58.9438 124.603 58.102 123.959 56.9934C123.321 55.8984 122.996 54.516 122.996 52.8941C122.996 51.2722 123.335 49.8761 124.006 48.8153C124.678 47.7546 125.614 46.9471 126.787 46.4201C127.947 45.9 129.297 45.6331 130.796 45.6331C131.482 45.6331 132.221 45.6879 133.001 45.7973C133.774 45.9068 134.575 46.0506 135.389 46.2285L136.271 46.4133L136.847 43.8675L136.101 43.5595C135.233 43.2379 134.324 42.9847 133.408 42.8067L133.401 42.8273Z" fill="#3D87C4"/>
+        <path d="M146.289 42.8546H142.938V62.9472H146.289V42.8546Z" fill="#3D87C4"/>
+        <path d="M167.365 42.8546H150.041V45.7631H157.055V62.9541H160.406V45.7631H167.365V42.8546Z" fill="#3D87C4"/>
+        <path d="M181.04 58.8685L182.519 62.9541H186.209L178.415 42.8615H174.305L166.565 62.9541H170.024L171.544 58.8685H181.04ZM176.143 46.5022H176.557L179.989 55.96H172.629L176.143 46.5022Z" fill="#3D87C4"/>
+        <path d="M189.493 42.8546V62.9541H203.588V60.0387H192.844V42.8546H189.493Z" fill="#3D87C4"/>
+        <path d="M36.1755 0.5C16.2325 0.5 0 16.8766 0 36.9966C0 57.1166 16.2325 73.4932 36.1755 73.4932C56.1185 73.4932 72.3511 57.1166 72.3511 36.9966C72.3511 16.8766 56.1253 0.5 36.1755 0.5ZM48.2702 68.5384L45.1092 69.5992C42.172 70.482 39.6689 70.8242 36.1823 70.8242C33.5232 70.8242 30.8506 70.4957 28.239 69.8592L24.8134 68.819C11.5588 63.9806 2.65228 51.1901 2.65228 36.9966C2.65228 18.3479 17.6909 3.17582 36.1755 3.17582C54.6601 3.17582 69.6988 18.3479 69.6988 36.9966C69.6988 50.8411 61.0839 63.5153 48.2634 68.5316L48.2702 68.5384Z" fill="#162159"/>
+        <path d="M38.7125 66.7317C38.9839 67.0944 39.2552 67.4503 39.5265 67.813C40.5644 67.7103 41.5412 67.5529 42.5383 67.3203C41.6022 66.1979 40.7272 65.1577 39.92 64.2338C39.323 65.0619 38.7736 66.109 38.7125 66.7386V66.7317Z" fill="#162159"/>
+        <path d="M55.2299 44.2028L53.9479 43.669L54.4634 42.3688C54.7415 41.6639 55.0129 40.9864 55.2842 40.3157L55.3452 40.1583C56.01 38.5227 56.6273 36.9898 57.17 35.4363C57.2446 35.2241 57.2514 35.1078 57.2446 35.0667C57.1971 35.0325 56.9936 34.923 56.6002 34.8614C55.8269 34.7314 55.5759 34.7588 55.4945 34.7861C55.4741 34.8204 55.4199 34.9367 55.3724 35.2104C54.8161 38.3516 52.9575 40.7948 49.8507 42.4577C48.9214 42.9573 47.9514 43.3406 47.0153 43.717L46.8729 43.7717C46.8729 43.7717 46.8389 43.7854 46.8254 43.7922L47.1645 45.4484C47.8904 45.4141 48.5483 45.3936 49.1588 45.3936C55.1553 45.3936 58.045 47.125 62.8476 52.2166C63.2003 51.5939 63.5327 50.9506 63.8448 50.3073L62.3456 47.7957L63.6277 47.0908C64.2925 46.7213 64.9369 46.3243 65.5474 45.9069C65.778 45.1404 65.9815 44.3602 66.1511 43.5732C66.0629 43.6348 65.9679 43.6896 65.8798 43.7443C62.8476 45.5921 58.9675 45.7632 55.2367 44.2165L55.2299 44.2028Z" fill="#162159"/>
+        <path d="M18.003 36.675C17.5553 35.4842 17.2365 34.8272 17.0533 34.7109C16.8159 34.6287 15.9883 34.9162 15.2897 35.1899L18.6067 43.5801L17.3857 44.1413C13.8109 45.77 10.0597 45.7084 7.09539 43.977C6.76979 43.7854 6.46454 43.5801 6.16608 43.3542C6.34244 44.2097 6.55951 45.0514 6.81049 45.8795C7.46848 46.2764 8.18073 46.6734 8.95403 47.0566L10.3243 47.7341L8.64199 50.5742C8.94724 51.1969 9.27284 51.806 9.61201 52.4082C13.682 47.1456 19.0205 44.7914 25.4986 45.421L25.7971 43.5732C22.731 42.3756 19.5157 40.6647 18.0166 36.6681L18.003 36.675Z" fill="#162159"/>
+        <path d="M61.4502 19.4703C60.7922 18.5053 60.08 17.5815 59.3203 16.6986C59.0964 19.0528 58.3231 21.1606 57.0071 22.8852C54.538 26.1222 50.2984 27.7852 45.0617 27.5593L44.0374 27.5114L44.0577 26.478C44.207 18.1358 46.8186 14.2007 53.6494 12.134C53.6358 11.915 53.6222 11.7097 53.6019 11.5318C52.8761 11.0253 52.1231 10.5463 51.3498 10.0946C51.0717 10.1904 50.7461 10.3205 50.3798 10.471C49.2877 10.9295 48.2499 11.5386 47.151 12.1751L47.0763 12.2161C46.5947 12.4967 46.0927 12.791 45.5908 13.0716L44.6343 13.5985L41.7039 7.59673C41.2969 7.8431 40.9645 8.04156 40.6389 8.2674C40.3133 8.49324 39.9945 8.7396 39.6893 8.97913C43.8475 19.2102 42.5722 29.0307 36.5215 32.9657L35.7753 33.4516L35.1784 32.7878C30.7963 27.8878 29.2836 21.8518 30.6878 14.844C31.4204 11.1896 32.7771 8.26056 34.751 6.06378C33.6589 6.11853 32.5803 6.22118 31.5221 6.38543C30.3418 8.13053 29.3311 10.1767 28.4832 12.5446L28.0626 13.708L26.9909 13.1126C26.4143 12.791 25.8716 12.4762 25.3425 12.1614C24.2572 11.5249 23.2329 10.9227 22.1747 10.471C21.7541 10.2931 21.3946 10.1562 21.0894 10.0467C20.3364 10.4779 19.6106 10.9364 18.8984 11.4291C18.8712 11.6002 18.8509 11.7918 18.8305 11.9971C26.4211 13.9749 28.0219 18.6696 28.2661 26.5533L28.3001 27.6346H27.0587C21.9305 27.6414 17.7927 25.8963 15.3982 22.7278C14.1093 21.0169 13.3496 18.9502 13.1257 16.596C12.3592 17.4788 11.6402 18.4027 10.9754 19.3676C11.5384 21.3659 12.5288 23.3506 13.9533 25.3283L14.9098 26.6628L13.3089 26.9845C10.989 27.4498 9.0286 27.2103 7.30563 26.5533C7.02073 27.3609 6.76297 28.1821 6.5459 29.017C9.25923 29.9682 12.4474 30.1257 16.4089 29.5371C22.7581 28.6064 27.9338 29.9272 32.2412 33.5885C33.5639 34.7177 34.7374 36.2438 33.3876 39.0428C29.7924 46.5022 29.7856 53.7769 33.374 60.682C34.5068 62.8514 34.3169 64.5213 32.7431 66.2664C32.465 66.5743 32.0716 67.0328 31.5968 67.5803C32.3565 67.6967 33.1162 67.7856 33.8827 67.8404C37.0641 63.3989 39.3637 59.8403 40.2794 57.8967C42.4433 53.2842 42.4908 48.1447 40.4015 42.2113C39.323 44.4423 38.9567 46.5091 39.2212 48.7743C39.6486 52.4014 38.9906 55.5357 37.2134 58.3621L36.318 59.7855L35.4361 58.3484C33.2248 54.7487 32.6957 51.4022 33.5436 46.4064C35.6057 34.2728 44.4308 27.8262 56.573 29.5782C58.92 29.9135 61.1043 29.9614 63.0511 29.7082C64.0347 29.5782 64.964 29.366 65.8594 29.0649C65.6423 28.23 65.3846 27.4088 65.0997 26.6012C63.4988 27.1898 61.5588 27.443 59.2253 26.9297L57.6651 26.5944L58.5877 25.2873C59.9511 23.3574 60.9076 21.4207 61.457 19.4497L61.4502 19.4703Z" fill="#162159"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_header">
+          <rect width="219" height="73" fill="white" transform="translate(0 0.5)"/>
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <a href="home.html#divisiones" class="back-link">← Volver a Ceibo Digital</a>
+</header>
+
+<section class="hero">
+  <img src="data:image/png;base64,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" alt="Ceibo Staff" class="hero-icon-img">
+  <div class="hero-text">
+    <div class="eyebrow">CEIBO STAFF</div>
+    <h1>El equipo que sostiene la operación de todo el grupo</h1>
+    <p>Administración, finanzas, IT y desarrollo comercial: el backoffice que le permite a cada división enfocarse en lo suyo, sin fricciones.</p>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="cap-section-head">
+    <div class="eyebrow">01 — PERSONAS</div>
+    <h2>Personas</h2>
+    <p>Gestionamos el ciclo de vida completo del talento del grupo, desde el ingreso hasta el desarrollo de carrera.</p>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="num">1</div>
+      <h3>Administración de personal</h3>
+      <p>Legajos, liquidación de sueldos, beneficios y todo lo administrativo para que cada persona del grupo esté cubierta.</p>
+    </div>
+    <div class="offer-card">
+      <div class="num">2</div>
+      <h3>Selección y onboarding</h3>
+      <p>Acompañamos a cada división en la búsqueda de talento y en un proceso de onboarding consistente en todo el grupo.</p>
+    </div>
+    <div class="offer-card">
+      <div class="num">3</div>
+      <h3>Cultura y bienestar</h3>
+      <p>Sostenemos la certificación Great Place to Work con iniciativas concretas de clima y bienestar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="soporte-it" style="background:var(--paper-tint);">
+  <div class="cap-section-head">
+    <div class="eyebrow">02 — SOPORTE IT</div>
+    <h2>Soporte IT</h2>
+    <p>Infraestructura y soporte técnico para que todas las divisiones trabajen sin interrupciones.</p>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card" style="background:#fff;">
+      <div class="num">1</div>
+      <h3>Mesa de ayuda</h3>
+      <p>Soporte técnico diario para resolver incidentes de hardware, software y accesos en todo el grupo.</p>
+    </div>
+    <div class="offer-card" style="background:#fff;">
+      <div class="num">2</div>
+      <h3>Infraestructura y seguridad</h3>
+      <p>Administramos la infraestructura tecnológica y las políticas de seguridad de la información del grupo.</p>
+    </div>
+    <div class="offer-card" style="background:#fff;">
+      <div class="num">3</div>
+      <h3>Herramientas colaborativas</h3>
+      <p>Gestionamos las licencias y herramientas que usan todos los días las cinco divisiones.</p>
+    </div>
+  </div>
+</section>
+
+<section id="desarrollo-comercial">
+  <div class="cap-section-head">
+    <div class="eyebrow">03 — DESARROLLO COMERCIAL</div>
+    <h2>Desarrollo comercial</h2>
+    <p>Damos soporte comercial y administrativo a las cinco divisiones para que puedan enfocarse en sus clientes.</p>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="num">1</div>
+      <h3>Soporte a propuestas</h3>
+      <p>Ayudamos a armar propuestas comerciales y contratos consistentes con la marca del grupo.</p>
+    </div>
+    <div class="offer-card">
+      <div class="num">2</div>
+      <h3>Administración de cuentas</h3>
+      <p>Gestionamos la facturación y seguimiento administrativo de las cuentas de cada división.</p>
+    </div>
+    <div class="offer-card">
+      <div class="num">3</div>
+      <h3>Inteligencia comercial</h3>
+      <p>Consolidamos información comercial del grupo para identificar oportunidades cruzadas entre divisiones.</p>
+    </div>
+  </div>
+</section>
+
+<section id="equipo" style="background:var(--paper-tint);">
+  <div class="cap-section-head">
+    <div class="eyebrow">EQUIPO</div>
+    <h2>El equipo de Ceibo Staff</h2>
+  </div>
+  <div class="staff-team-grid">
+    <div class="staff-team-card">
+      <div class="staff-avatar">NG</div>
+      <div class="staff-name">Nahuel Gonzalez</div>
+      <div class="staff-role">Finance Coordinator</div>
+    </div>
+    <div class="staff-team-card">
+      <div class="staff-avatar">JH</div>
+      <div class="staff-name">Julieta Haberkorn</div>
+      <div class="staff-role">Partners Assistant</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>¿Querés desarrollar tu carrera?</h2>
+  <p>Mirá las búsquedas abiertas del grupo y contanos en qué te gustaría crecer.</p>
+  <a href="home.html#abrir-busquedas" class="btn-primary">Ver búsquedas abiertas</a>
+</section>
+
+<footer>
+  Powered by Ceibo Digital
+</footer>
+
+</body>
+</html>
